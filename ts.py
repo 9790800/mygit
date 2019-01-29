@@ -23,7 +23,7 @@ def sshsess(comand, host):
 #LBcore
 host = hostlbcore
 
-comand = " rpm -qa | egrep -i 'lbcore-2|lbtv-2|lbphone-2' "
+comand = """sudo rpm -qa | egrep -i 'lbcore-2|lbtv-2|lbphone-2' | awk -F ".git" '{print "find /opt/backup -name " $1 "*"}' """
 
 outsshlbcore = sshsess(comand, host)
 print '\033[91m' + '\n rpm LBcore ' + host +'\n' + '\033[0m'
@@ -34,8 +34,7 @@ print '\033[96m' + outsshlbcore + '\033[0m'
 #LBarcd
 host = hostlbarcd
 
-comand = " rpm -qa | egrep -i 'lbarcd-2' "
-
+comand = """sudo rpm -qa | egrep -i 'lbarcd-2' | awk -F ".git" '{print "find /opt/backup -name " $1 "*"}' """
 outsshlbarcd = sshsess(comand, host)
 print '\033[91m' + '\n rpm LBarcd ' + host +'\n' + '\033[0m' 
 print '\033[96m' + outsshlbarcd + '\033[0m'
